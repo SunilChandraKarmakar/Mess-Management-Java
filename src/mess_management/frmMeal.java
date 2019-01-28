@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -51,6 +53,11 @@ public class frmMeal extends javax.swing.JFrame {
         jTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 2, 20)); // NOI18N
         jLabel1.setText("Meal Details");
@@ -59,7 +66,7 @@ public class frmMeal extends javax.swing.JFrame {
         jLabel2.setText("Member Name");
 
         jComboBoxMemberName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxMemberName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMemberName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Quantity");
@@ -68,21 +75,41 @@ public class frmMeal extends javax.swing.JFrame {
 
         jButtonInsert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonInsert.setText("Insert");
+        jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertActionPerformed(evt);
+            }
+        });
 
         jButtonUpdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         jButtonDetele.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonDetele.setText("Delete");
+        jButtonDetele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeteleActionPerformed(evt);
+            }
+        });
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Member Name", "Quantity", "Date"
             }
         ));
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,6 +171,106 @@ public class frmMeal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        jTable.removeColumn(jTable.getColumnModel().getColumn(0));
+        LoadComboBox();
+        ShowTableData();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
+        // TODO add your handling code here:
+        try {
+            InputValue();
+            
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date(0);
+            String currentDT = dateFormat.format(date);
+
+            for (Map.Entry cm : LoadMember.entrySet()) {
+                if (jComboBoxMemberName.getSelectedItem().equals(cm.getValue())) {
+                    Member_ID = (Integer) cm.getKey();
+                    System.out.println(cm.getKey());
+                }
+            }
+
+            String query = "insert into meal (Member_ID, Quantity, Date) value ('" + Member_ID + "', '" + Quantity + "', '"+ currentDT +"')";
+            DBSta = DBCon.createStatement();
+            DBSta.execute(query);
+            DBSta.close();
+
+            ShowTableData();
+            InputValueReset();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButtonInsertActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+        selectedRow = jTable.getSelectedRow();
+
+        if (selectedRow >= 0) {
+            ID = Integer.parseInt(DataTable.getValueAt(selectedRow, 0).toString());
+            jComboBoxMemberName.setSelectedItem(DataTable.getValueAt(selectedRow, 1).toString());
+            jTextFieldQuantity.setText(DataTable.getValueAt(selectedRow, 2).toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "No row selected");
+        }
+    }//GEN-LAST:event_jTableMouseClicked
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+        if (ID >= 0) {
+            try {
+
+                InputValue();
+                
+                for (Map.Entry cm : LoadMember.entrySet()) {
+                    if (jComboBoxMemberName.getSelectedItem().equals(cm.getValue())) {
+                        Member_ID = (Integer) cm.getKey();
+                        System.out.println(cm.getKey());
+                    }
+                }
+
+                String query = "update meal set Member_ID = '" + Member_ID + "', Quantity = '" + Quantity + "' where ID = '" + ID + "'";
+
+                DBSta = (Statement) DBCon.createStatement();
+                DBSta.execute(query);
+                DBSta.close();
+
+                ShowTableData();
+                InputValueReset();
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No row selected");
+        }
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonDeteleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeteleActionPerformed
+        // TODO add your handling code here:
+        if (ID >= 0) {
+            try {
+                String query = "delete from meal where ID = '" + ID + "'";
+                DBSta = DBCon.createStatement();
+                DBSta.execute(query);
+                DBSta.close();
+
+                ShowTableData();
+                InputValueReset();
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No row selected");
+        }
+    }//GEN-LAST:event_jButtonDeteleActionPerformed
+
     private void DBConnection() {
         String url = "jdbc:mysql://localhost:3306/mess_management";
         String username = "root";
@@ -185,7 +312,7 @@ public class frmMeal extends javax.swing.JFrame {
     
     public void ShowTableData() {
         try {
-            String query = "SELECT costing.ID, mess_member.Member_Name, costing.Cost_Name, costing.Amount, costing.Date FROM mess_member, costing where mess_member.ID = costing.Member_ID";
+            String query = "SELECT meal.ID, mess_member.Member_Name, meal.Quantity, meal.Date FROM mess_member, meal where mess_member.ID = meal.Member_ID";
             DBSta = DBCon.createStatement();
             ResultSet DatabaseRs = DBSta.executeQuery(query);
             DataTable.setRowCount(0);
@@ -194,8 +321,7 @@ public class frmMeal extends javax.swing.JFrame {
                 Object seaving[] = {
                     DatabaseRs.getInt("ID"),
                     DatabaseRs.getString("Member_Name"),
-                    DatabaseRs.getString("Cost_Name"),
-                    DatabaseRs.getDouble("Amount"),
+                    DatabaseRs.getDouble("Quantity"),
                     DatabaseRs.getDate("Date")
                 };
                 DataTable.addRow(seaving);
