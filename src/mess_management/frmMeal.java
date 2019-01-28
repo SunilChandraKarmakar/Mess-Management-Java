@@ -26,6 +26,8 @@ public class frmMeal extends javax.swing.JFrame {
      */
     public frmMeal() {
         initComponents();
+        DBConnection();
+        DataTable = (DefaultTableModel) jTable.getModel();
     }
 
     /**
@@ -41,12 +43,12 @@ public class frmMeal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBoxMemberName = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldQuantity = new javax.swing.JTextField();
         jButtonInsert = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jButtonDetele = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +64,7 @@ public class frmMeal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Quantity");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldQuantity.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButtonInsert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonInsert.setText("Insert");
@@ -73,7 +75,7 @@ public class frmMeal extends javax.swing.JFrame {
         jButtonDetele.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonDetele.setText("Delete");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -81,7 +83,7 @@ public class frmMeal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +101,7 @@ public class frmMeal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBoxMemberName, 0, 215, Short.MAX_VALUE)
-                                    .addComponent(jTextField1)))
+                                    .addComponent(jTextFieldQuantity)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -128,7 +130,7 @@ public class frmMeal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonInsert)
@@ -173,7 +175,35 @@ public class frmMeal extends javax.swing.JFrame {
     }
     
     private void InputValue() {
-        Quantity = Double.parseDouble(jTextField1.getText());
+        Quantity = Double.parseDouble(jTextFieldQuantity.getText());
+    }
+    
+    private void InputValueReset() {
+        jComboBoxMemberName.setSelectedIndex(0);
+        jTextFieldQuantity.setText("");
+    }
+    
+    public void ShowTableData() {
+        try {
+            String query = "SELECT costing.ID, mess_member.Member_Name, costing.Cost_Name, costing.Amount, costing.Date FROM mess_member, costing where mess_member.ID = costing.Member_ID";
+            DBSta = DBCon.createStatement();
+            ResultSet DatabaseRs = DBSta.executeQuery(query);
+            DataTable.setRowCount(0);
+
+            while (DatabaseRs.next()) {
+                Object seaving[] = {
+                    DatabaseRs.getInt("ID"),
+                    DatabaseRs.getString("Member_Name"),
+                    DatabaseRs.getString("Cost_Name"),
+                    DatabaseRs.getDouble("Amount"),
+                    DatabaseRs.getDate("Date")
+                };
+                DataTable.addRow(seaving);
+            }
+            DBSta.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
     
     /**
@@ -231,7 +261,7 @@ public class frmMeal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTable;
+    private javax.swing.JTextField jTextFieldQuantity;
     // End of variables declaration//GEN-END:variables
 }
