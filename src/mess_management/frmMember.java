@@ -87,7 +87,7 @@ public class frmMember extends javax.swing.JFrame {
             }
         });
 
-        jTableShowMember.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jTableShowMember.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableShowMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -96,6 +96,7 @@ public class frmMember extends javax.swing.JFrame {
                 "ID", "Member Name"
             }
         ));
+        jTableShowMember.setRowHeight(20);
         jTableShowMember.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableShowMemberMouseClicked(evt);
