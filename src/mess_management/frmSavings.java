@@ -385,7 +385,7 @@ public class frmSavings extends javax.swing.JFrame {
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
         // TODO add your handling code here:
-        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
        jTableShowSavings.setRowSorter(trs);
        String text = jTextFieldSearch.getText();
        trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
