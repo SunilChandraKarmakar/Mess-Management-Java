@@ -34,7 +34,9 @@
               <Component id="jButtonMeal" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonCosting" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="200" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonReport" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="89" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,6 +49,7 @@
                   <Component id="jButtonSavings" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonMeal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonCosting" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonReport" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="340" max="32767" attributes="0"/>
           </Group>
@@ -84,6 +87,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCostingActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonReport">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total Report"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReportActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

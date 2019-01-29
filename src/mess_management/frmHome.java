@@ -31,6 +31,7 @@ public class frmHome extends javax.swing.JFrame {
         jButtonSavings = new javax.swing.JButton();
         jButtonMeal = new javax.swing.JButton();
         jButtonCosting = new javax.swing.JButton();
+        jButtonReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,13 @@ public class frmHome extends javax.swing.JFrame {
             }
         });
 
+        jButtonReport.setText("Total Report");
+        jButtonReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +83,9 @@ public class frmHome extends javax.swing.JFrame {
                 .addComponent(jButtonMeal)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCosting)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonReport)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +95,8 @@ public class frmHome extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButtonSavings)
                     .addComponent(jButtonMeal)
-                    .addComponent(jButtonCosting))
+                    .addComponent(jButtonCosting)
+                    .addComponent(jButtonReport))
                 .addContainerGap(340, Short.MAX_VALUE))
         );
 
@@ -120,6 +131,13 @@ public class frmHome extends javax.swing.JFrame {
         costing.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButtonCostingActionPerformed
+
+    private void jButtonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportActionPerformed
+        // TODO add your handling code here:
+        frmReport report = new frmReport();
+        report.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButtonReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +178,7 @@ public class frmHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCosting;
     private javax.swing.JButton jButtonMeal;
+    private javax.swing.JButton jButtonReport;
     private javax.swing.JButton jButtonSavings;
     // End of variables declaration//GEN-END:variables
 }
