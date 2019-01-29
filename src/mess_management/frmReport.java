@@ -243,7 +243,8 @@ public class frmReport extends javax.swing.JFrame {
                 .addGap(47, 47, 47))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(749, 413));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

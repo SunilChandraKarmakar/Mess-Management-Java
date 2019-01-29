@@ -152,7 +152,8 @@ public class frmMember extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(398, 505));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
