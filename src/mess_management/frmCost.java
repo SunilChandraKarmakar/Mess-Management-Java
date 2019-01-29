@@ -11,7 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,7 +27,7 @@ public class frmCost extends javax.swing.JFrame {
     public frmCost() {
         initComponents();
         DBConnection();
-        DataTable = (DefaultTableModel) jTable.getModel();
+        DataTable = (DefaultTableModel) jTableShowCosting.getModel();
     }
 
     /**
@@ -48,9 +50,9 @@ public class frmCost extends javax.swing.JFrame {
         jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTableShowCosting = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldSearch = new javax.swing.JTextField();
         jButtonHome = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -104,8 +106,8 @@ public class frmCost extends javax.swing.JFrame {
             }
         });
 
-        jTable.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTableShowCosting.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTableShowCosting.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -113,20 +115,30 @@ public class frmCost extends javax.swing.JFrame {
                 "ID", "Member Name", "Cost Name", "Amount", "Date"
             }
         ));
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableShowCosting.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMouseClicked(evt);
+                jTableShowCostingMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable);
+        jScrollPane1.setViewportView(jTableShowCosting);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Search");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyReleased(evt);
+            }
+        });
 
         jButtonHome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonHome.setText("Home");
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("--------------------------------------------------------------------------------------");
 
@@ -165,7 +177,7 @@ public class frmCost extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(282, 282, 282)
@@ -204,7 +216,7 @@ public class frmCost extends javax.swing.JFrame {
                     .addComponent(jButtonDelete)
                     .addComponent(jButtonHome)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -311,14 +323,15 @@ public class frmCost extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        jTable.removeColumn(jTable.getColumnModel().getColumn(0));
+        jTableShowCosting.removeColumn(jTableShowCosting.getColumnModel().getColumn(0));
         LoadComboBox();
         ShowTableData();
     }//GEN-LAST:event_formWindowOpened
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-        try {
+        if(jTextFieldCostName.getText() == "" && jTextFieldAmmount.getText() == "") {
+            try {
             InputValue();
             
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -343,11 +356,14 @@ public class frmCost extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter Member Name, Cost Name and Amount");
+        }
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
-    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+    private void jTableShowCostingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableShowCostingMouseClicked
         // TODO add your handling code here:
-        selectedRow = jTable.getSelectedRow();
+        selectedRow = jTableShowCosting.getSelectedRow();
 
         if (selectedRow >= 0) {
             ID = Integer.parseInt(DataTable.getValueAt(selectedRow, 0).toString());
@@ -358,7 +374,7 @@ public class frmCost extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
 
-    }//GEN-LAST:event_jTableMouseClicked
+    }//GEN-LAST:event_jTableShowCostingMouseClicked
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
@@ -379,6 +395,21 @@ public class frmCost extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+        // TODO add your handling code here:
+        frmHome home = new frmHome();
+        home.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButtonHomeActionPerformed
+
+    private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
+        // TODO add your handling code here:
+       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+       jTableShowCosting.setRowSorter(trs);
+       String text = jTextFieldSearch.getText();
+       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -439,9 +470,9 @@ public class frmCost extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTableShowCosting;
     private javax.swing.JTextField jTextFieldAmmount;
     private javax.swing.JTextField jTextFieldCostName;
+    private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }
