@@ -6,8 +6,12 @@
 package mess_management;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -41,6 +45,10 @@ public class frmMember extends javax.swing.JFrame {
         jButtonDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableShowMember = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldSearch = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -50,7 +58,7 @@ public class frmMember extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 2, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 2, 30)); // NOI18N
         jLabel1.setText("Member Details");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -87,7 +95,7 @@ public class frmMember extends javax.swing.JFrame {
             }
         });
 
-        jTableShowMember.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableShowMember.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTableShowMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -104,6 +112,26 @@ public class frmMember extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableShowMember);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Search");
+
+        jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyReleased(evt);
+            }
+        });
+
+        jLabel4.setText("------------------------------------------------------------------------------------");
+
+        jButtonHome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonHome.setText("Home");
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,67 +139,86 @@ public class frmMember extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldMember, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
                                 .addComponent(jButtonInsert)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonUpdate)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonDelete)))
-                        .addGap(0, 26, Short.MAX_VALUE)))
+                                .addComponent(jButtonDelete)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonHome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldMember, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(123, 123, 123)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39)))
+                .addGap(156, 156, 156))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonInsert)
                     .addComponent(jButtonUpdate)
-                    .addComponent(jButtonDelete))
+                    .addComponent(jButtonDelete)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonHome))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(398, 505));
+        setSize(new java.awt.Dimension(681, 521));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-            try {
+           if(jTextFieldMember.getText() == "") {
+                try {
             
-            InputValue();
-            String query = "insert into mess_member (Member_Name) value ('"+ Member_Name +"')";
-            DBSta = DBCon.createStatement();
-            DBSta.execute(query);
-            DBSta.close();
+                InputValue();
+                String query = "insert into mess_member (Member_Name) value ('"+ Member_Name +"')";
+                DBSta = DBCon.createStatement();
+                DBSta.execute(query);
+                DBSta.close();
+
+                InputValueReset();
+                ShowTableData();
             
-            InputValueReset();
-            ShowTableData();
-            
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        } else {
+               JOptionPane.showMessageDialog(null, "Please enter Member Name");
+           }
         
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
@@ -251,6 +298,20 @@ public class frmMember extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldMemberActionPerformed
 
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+        // TODO add your handling code here:
+        frmHome home = new frmHome();
+        home.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButtonHomeActionPerformed
+
+    private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
+       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+       jTableShowMember.setRowSorter(trs);
+       String text = jTextFieldSearch.getText();
+       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    }//GEN-LAST:event_jTextFieldSearchKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -279,7 +340,7 @@ public class frmMember extends javax.swing.JFrame {
     private void ShowTableData() {
         try {
             String query = "select ID, Member_name from mess_member";
-            DBSta = (Statement) DBCon.createStatement();
+            DBSta = DBCon.createStatement();
             ResultSet DatabaseRs = DBSta.executeQuery(query);
             DataTable.setRowCount(0);
             
@@ -334,15 +395,20 @@ public class frmMember extends javax.swing.JFrame {
     private Statement DBSta;
     private DefaultTableModel DataTable; 
     private int selectedRow;
+     private ResultSet RS;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonInsert;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableShowMember;
     private javax.swing.JTextField jTextFieldMember;
+    private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }
