@@ -11,7 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,7 +27,7 @@ public class frmSavings extends javax.swing.JFrame {
     public frmSavings() {
         initComponents();
         DBConnection();
-        DataTable = (DefaultTableModel) jTable.getModel();
+        DataTable = (DefaultTableModel) jTableShowSavings.getModel();
     }
 
     /**
@@ -46,7 +48,7 @@ public class frmSavings extends javax.swing.JFrame {
         jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTableShowSavings = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
         jButtonHome = new javax.swing.JButton();
@@ -97,7 +99,8 @@ public class frmSavings extends javax.swing.JFrame {
             }
         });
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTableShowSavings.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTableShowSavings.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -105,20 +108,30 @@ public class frmSavings extends javax.swing.JFrame {
                 "ID", "Member Name", "Amount", "Date"
             }
         ));
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableShowSavings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMouseClicked(evt);
+                jTableShowSavingsMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable);
+        jScrollPane1.setViewportView(jTableShowSavings);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Search");
 
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyReleased(evt);
+            }
+        });
 
         jButtonHome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonHome.setText("Home");
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("---------------------------------------------------------------------");
 
@@ -229,7 +242,7 @@ public class frmSavings extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        jTable.removeColumn(jTable.getColumnModel().getColumn(0));
+        jTableShowSavings.removeColumn(jTableShowSavings.getColumnModel().getColumn(0));
         LoadComboBox();
         ShowTableData();
     }//GEN-LAST:event_formWindowOpened
@@ -268,7 +281,8 @@ public class frmSavings extends javax.swing.JFrame {
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-        try {
+        if(jTextFieldAmount.getText() == "") {
+            try {
             InputValue();
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -293,6 +307,9 @@ public class frmSavings extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter Member Name and Amount");
+        }
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
@@ -315,9 +332,9 @@ public class frmSavings extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
-    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+    private void jTableShowSavingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableShowSavingsMouseClicked
         // TODO add your handling code here:
-        selectedRow = jTable.getSelectedRow();
+        selectedRow = jTableShowSavings.getSelectedRow();
 
         if (selectedRow >= 0) {
             ID = Integer.parseInt(DataTable.getValueAt(selectedRow, 0).toString());
@@ -326,7 +343,7 @@ public class frmSavings extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
-    }//GEN-LAST:event_jTableMouseClicked
+    }//GEN-LAST:event_jTableShowSavingsMouseClicked
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
@@ -358,6 +375,21 @@ public class frmSavings extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+        // TODO add your handling code here:
+        frmHome home = new frmHome();
+        home.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButtonHomeActionPerformed
+
+    private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
+        // TODO add your handling code here:
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+       jTableShowSavings.setRowSorter(trs);
+       String text = jTextFieldSearch.getText();
+       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -416,7 +448,7 @@ public class frmSavings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable;
+    private javax.swing.JTable jTableShowSavings;
     private javax.swing.JTextField jTextFieldAmount;
     private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables

@@ -28,13 +28,21 @@ public class frmHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButtonSavings = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Member Details");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButtonSavings.setText("Savings");
+        jButtonSavings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSavingsActionPerformed(evt);
             }
         });
 
@@ -43,16 +51,20 @@ public class frmHome extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(229, 229, 229)
+                .addGap(42, 42, 42)
                 .addComponent(jButton1)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSavings)
+                .addContainerGap(394, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jButton1)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButtonSavings))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(644, 479));
@@ -65,6 +77,13 @@ public class frmHome extends javax.swing.JFrame {
         member.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonSavingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSavingsActionPerformed
+        // TODO add your handling code here:
+        frmSavings savings = new frmSavings();
+        savings.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButtonSavingsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,5 +122,6 @@ public class frmHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSavings;
     // End of variables declaration//GEN-END:variables
 }
