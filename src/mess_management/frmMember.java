@@ -65,7 +65,7 @@ public class frmMember extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Member Name");
 
-        jTextFieldMember.setBackground(new java.awt.Color(0, 204, 153));
+        jTextFieldMember.setBackground(new java.awt.Color(204, 255, 204));
         jTextFieldMember.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +123,7 @@ public class frmMember extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\search-icon.png")); // NOI18N
 
-        jTextFieldSearch.setBackground(new java.awt.Color(0, 204, 153));
+        jTextFieldSearch.setBackground(new java.awt.Color(204, 255, 204));
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

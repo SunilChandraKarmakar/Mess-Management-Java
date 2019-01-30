@@ -58,6 +58,7 @@ public class frmCost extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Costing - Mess management");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -70,20 +71,20 @@ public class frmCost extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Member Name");
 
-        jComboBoxMemberName.setBackground(new java.awt.Color(0, 204, 153));
+        jComboBoxMemberName.setBackground(new java.awt.Color(204, 255, 204));
         jComboBoxMemberName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxMemberName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Cost Name");
 
-        jTextFieldCostName.setBackground(new java.awt.Color(0, 204, 153));
+        jTextFieldCostName.setBackground(new java.awt.Color(204, 255, 204));
         jTextFieldCostName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Amount");
 
-        jTextFieldAmmount.setBackground(new java.awt.Color(0, 204, 153));
+        jTextFieldAmmount.setBackground(new java.awt.Color(204, 255, 204));
         jTextFieldAmmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButtonInsert.setBackground(new java.awt.Color(0, 204, 153));
@@ -132,7 +133,7 @@ public class frmCost extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableShowCosting);
 
-        jTextFieldSearch.setBackground(new java.awt.Color(0, 204, 153));
+        jTextFieldSearch.setBackground(new java.awt.Color(204, 255, 204));
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {

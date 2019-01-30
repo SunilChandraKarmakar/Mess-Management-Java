@@ -67,7 +67,7 @@ public class frmReport extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Report");
+        setTitle("Report - Mess Management");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Adobe Arabic", 0, 14)); // NOI18N
         setResizable(false);
@@ -84,29 +84,34 @@ public class frmReport extends javax.swing.JFrame {
         jLabel2.setText("Total Savings");
 
         jTextFieldTotalSavings.setEditable(false);
+        jTextFieldTotalSavings.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldTotalSavings.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Total Cost");
 
         jTextFieldTotalCost.setEditable(false);
+        jTextFieldTotalCost.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldTotalCost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Total Meal");
 
         jTextFieldTotalMeal.setEditable(false);
+        jTextFieldTotalMeal.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldTotalMeal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Per Meal");
 
         jTextFieldPerMeal.setEditable(false);
+        jTextFieldPerMeal.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldPerMeal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Select Member To View Details");
 
+        jComboBoxMemberName.setBackground(new java.awt.Color(204, 255, 204));
         jComboBoxMemberName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxMemberName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         jComboBoxMemberName.addItemListener(new java.awt.event.ItemListener() {
@@ -119,30 +124,36 @@ public class frmReport extends javax.swing.JFrame {
         jLabel7.setText("Personal Savings");
 
         jTextFieldPersonalSavings.setEditable(false);
+        jTextFieldPersonalSavings.setBackground(new java.awt.Color(0, 204, 204));
         jTextFieldPersonalSavings.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Personal Cost");
 
         jTextFieldPersonalCost.setEditable(false);
+        jTextFieldPersonalCost.setBackground(new java.awt.Color(0, 204, 204));
         jTextFieldPersonalCost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Personal Meal");
 
         jTextFieldPersonalMeal.setEditable(false);
+        jTextFieldPersonalMeal.setBackground(new java.awt.Color(0, 204, 204));
         jTextFieldPersonalMeal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Extra Money");
 
         jTextFieldExtraMoney.setEditable(false);
+        jTextFieldExtraMoney.setBackground(new java.awt.Color(0, 204, 204));
         jTextFieldExtraMoney.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Back To Home");
 
+        jButtonHome.setBackground(new java.awt.Color(102, 102, 255));
         jButtonHome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\home-icon.png")); // NOI18N
         jButtonHome.setText("Home");
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +297,7 @@ public class frmReport extends javax.swing.JFrame {
                     .addComponent(jTextFieldPersonalMeal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPersonalCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPersonalSavings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(738, 483));
