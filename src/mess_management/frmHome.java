@@ -63,6 +63,7 @@ public class frmHome extends javax.swing.JFrame {
             }
         });
 
+        jButtonReport.setBackground(new java.awt.Color(255, 0, 153));
         jButtonReport.setText("Total Report");
         jButtonReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
