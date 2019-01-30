@@ -51,10 +51,10 @@ public class frmCost extends javax.swing.JFrame {
         jButtonDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableShowCosting = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
         jButtonHome = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -69,20 +69,25 @@ public class frmCost extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Member Name");
 
+        jComboBoxMemberName.setBackground(new java.awt.Color(0, 204, 153));
         jComboBoxMemberName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxMemberName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Cost Name");
 
+        jTextFieldCostName.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldCostName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Amount");
 
+        jTextFieldAmmount.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldAmmount.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jButtonInsert.setBackground(new java.awt.Color(0, 204, 153));
         jButtonInsert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonInsert.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\Save-as-icon.png")); // NOI18N
         jButtonInsert.setText("Insert");
         jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +95,9 @@ public class frmCost extends javax.swing.JFrame {
             }
         });
 
+        jButtonUpdate.setBackground(new java.awt.Color(0, 153, 153));
         jButtonUpdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonUpdate.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\Text-Edit-icon.png")); // NOI18N
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +105,9 @@ public class frmCost extends javax.swing.JFrame {
             }
         });
 
+        jButtonDelete.setBackground(new java.awt.Color(255, 0, 0));
         jButtonDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonDelete.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\Delete-icon.png")); // NOI18N
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,9 +131,7 @@ public class frmCost extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableShowCosting);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Search");
-
+        jTextFieldSearch.setBackground(new java.awt.Color(0, 204, 153));
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -132,7 +139,9 @@ public class frmCost extends javax.swing.JFrame {
             }
         });
 
+        jButtonHome.setBackground(new java.awt.Color(102, 102, 255));
         jButtonHome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\home-icon.png")); // NOI18N
         jButtonHome.setText("Home");
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,42 +151,14 @@ public class frmCost extends javax.swing.JFrame {
 
         jLabel6.setText("--------------------------------------------------------------------------------------");
 
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sunil\\Documents\\GitHub\\Mess-Management-Java\\images\\search-icon.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonInsert)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonUpdate)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonDelete)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonHome))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldAmmount)
-                                    .addComponent(jTextFieldCostName)
-                                    .addComponent(jComboBoxMemberName, 0, 232, Short.MAX_VALUE))))
-                        .addGap(439, 439, 439))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(282, 282, 282)
@@ -187,7 +168,32 @@ public class frmCost extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldAmmount)
+                                    .addComponent(jTextFieldCostName)
+                                    .addComponent(jComboBoxMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonInsert)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonUpdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonDelete)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonHome)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(2, 2, 2)
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -197,7 +203,7 @@ public class frmCost extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,23 +212,23 @@ public class frmCost extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldCostName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonInsert)
                     .addComponent(jButtonUpdate)
                     .addComponent(jButtonDelete)
                     .addComponent(jButtonHome)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(715, 615));
+        setSize(new java.awt.Dimension(723, 615));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -467,8 +473,8 @@ public class frmCost extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableShowCosting;
     private javax.swing.JTextField jTextFieldAmmount;
