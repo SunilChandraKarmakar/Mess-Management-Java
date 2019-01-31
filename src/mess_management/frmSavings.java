@@ -293,8 +293,7 @@ public class frmSavings extends javax.swing.JFrame {
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-        if(jTextFieldAmount.getText() == "") {
-            try {
+        try {
             InputValue();
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -319,9 +318,7 @@ public class frmSavings extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please enter Member Name and Amount");
-        }
+
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
@@ -397,10 +394,10 @@ public class frmSavings extends javax.swing.JFrame {
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
         // TODO add your handling code here:
-       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
-       jTableShowSavings.setRowSorter(trs);
-       String text = jTextFieldSearch.getText();
-       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+        jTableShowSavings.setRowSorter(trs);
+        String text = jTextFieldSearch.getText();
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     /**

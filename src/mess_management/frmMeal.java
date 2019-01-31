@@ -243,10 +243,9 @@ public class frmMeal extends javax.swing.JFrame {
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-        if(jTextFieldQuantity.getText() == "") {
-            try {
+        try {
             InputValue();
-            
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date(0);
             String currentDT = dateFormat.format(date);
@@ -258,7 +257,7 @@ public class frmMeal extends javax.swing.JFrame {
                 }
             }
 
-            String query = "insert into meal (Member_ID, Quantity, Date) value ('" + Member_ID + "', '" + Quantity + "', '"+ currentDT +"')";
+            String query = "insert into meal (Member_ID, Quantity, Date) value ('" + Member_ID + "', '" + Quantity + "', '" + currentDT + "')";
             DBSta = DBCon.createStatement();
             DBSta.execute(query);
             DBSta.close();
@@ -268,9 +267,6 @@ public class frmMeal extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please enter Member Name and Quantity");
         }
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
@@ -293,7 +289,7 @@ public class frmMeal extends javax.swing.JFrame {
             try {
 
                 InputValue();
-                
+
                 for (Map.Entry cm : LoadMember.entrySet()) {
                     if (jComboBoxMemberName.getSelectedItem().equals(cm.getValue())) {
                         Member_ID = (Integer) cm.getKey();
@@ -351,10 +347,10 @@ public class frmMeal extends javax.swing.JFrame {
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
         // TODO add your handling code here:
-       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
-       jTableShowMeal.setRowSorter(trs);
-       String text = jTextFieldSearch.getText();
-       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+        jTableShowMeal.setRowSorter(trs);
+        String text = jTextFieldSearch.getText();
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     private void DBConnection() {
@@ -369,7 +365,7 @@ public class frmMeal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     private void LoadComboBox() {
         try {
             String query = "select * from mess_member";
@@ -386,16 +382,16 @@ public class frmMeal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     private void InputValue() {
         Quantity = Double.parseDouble(jTextFieldQuantity.getText());
     }
-    
+
     private void InputValueReset() {
         jComboBoxMemberName.setSelectedIndex(0);
         jTextFieldQuantity.setText("");
     }
-    
+
     public void ShowTableData() {
         try {
             String query = "SELECT meal.ID, mess_member.Member_Name, meal.Quantity, meal.Date FROM mess_member, meal where mess_member.ID = meal.Member_ID";
@@ -417,7 +413,7 @@ public class frmMeal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -452,7 +448,7 @@ public class frmMeal extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private int ID = -1;
     private int Member_ID;
     private double Quantity;

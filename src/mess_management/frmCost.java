@@ -218,13 +218,14 @@ public class frmCost extends javax.swing.JFrame {
                     .addComponent(jTextFieldAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonInsert)
-                    .addComponent(jButtonUpdate)
-                    .addComponent(jButtonDelete)
-                    .addComponent(jButtonHome)
-                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonInsert)
+                        .addComponent(jButtonUpdate)
+                        .addComponent(jButtonDelete)
+                        .addComponent(jButtonHome)
+                        .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -246,7 +247,7 @@ public class frmCost extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     private void LoadComboBox() {
         try {
             String query = "select * from mess_member";
@@ -263,18 +264,18 @@ public class frmCost extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     private void InputValue() {
         Cost_Name = jTextFieldCostName.getText();
         Amount = Double.parseDouble(jTextFieldAmmount.getText());
     }
-    
+
     private void InputValueReset() {
         jComboBoxMemberName.setSelectedIndex(0);
         jTextFieldCostName.setText("");
         jTextFieldAmmount.setText("");
     }
-    
+
     public void ShowTableData() {
         try {
             String query = "SELECT costing.ID, mess_member.Member_Name, costing.Cost_Name, costing.Amount, costing.Date FROM mess_member, costing where mess_member.ID = costing.Member_ID";
@@ -297,14 +298,14 @@ public class frmCost extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-         if (ID >= 0) {
+        if (ID >= 0) {
             try {
 
                 InputValue();
-                
+
                 for (Map.Entry cm : LoadMember.entrySet()) {
                     if (jComboBoxMemberName.getSelectedItem().equals(cm.getValue())) {
                         Member_ID = (Integer) cm.getKey();
@@ -312,7 +313,7 @@ public class frmCost extends javax.swing.JFrame {
                     }
                 }
 
-                String query = "update costing set Member_ID = '" + Member_ID + "', Cost_Name = '" + Cost_Name + "', Amount = '"+ Amount +"' where ID = '" + ID + "'";
+                String query = "update costing set Member_ID = '" + Member_ID + "', Cost_Name = '" + Cost_Name + "', Amount = '" + Amount + "' where ID = '" + ID + "'";
 
                 DBSta = (Statement) DBCon.createStatement();
                 DBSta.execute(query);
@@ -338,10 +339,9 @@ public class frmCost extends javax.swing.JFrame {
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-        if(jTextFieldCostName.getText() == "" && jTextFieldAmmount.getText() == "") {
-            try {
+        try {
             InputValue();
-            
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date(0);
             String currentDT = dateFormat.format(date);
@@ -353,7 +353,7 @@ public class frmCost extends javax.swing.JFrame {
                 }
             }
 
-            String query = "insert into costing (Member_ID, Cost_Name, Amount, Date) value ('" + Member_ID + "', '" + Cost_Name + "', '" + Amount + "', '"+ currentDT +"')";
+            String query = "insert into costing (Member_ID, Cost_Name, Amount, Date) value ('" + Member_ID + "', '" + Cost_Name + "', '" + Amount + "', '" + currentDT + "')";
             DBSta = DBCon.createStatement();
             DBSta.execute(query);
             DBSta.close();
@@ -363,9 +363,6 @@ public class frmCost extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please enter Member Name, Cost Name and Amount");
         }
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
@@ -413,10 +410,10 @@ public class frmCost extends javax.swing.JFrame {
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
         // TODO add your handling code here:
-       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
-       jTableShowCosting.setRowSorter(trs);
-       String text = jTextFieldSearch.getText();
-       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+        jTableShowCosting.setRowSorter(trs);
+        String text = jTextFieldSearch.getText();
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     /**
@@ -464,7 +461,7 @@ public class frmCost extends javax.swing.JFrame {
     private int selectedRow;
     private ResultSet RS;
     Map<Integer, String> LoadMember = new HashMap();
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonHome;

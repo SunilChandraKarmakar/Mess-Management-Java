@@ -209,28 +209,25 @@ public class frmMember extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(729, 535));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-  
+
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
         // TODO add your handling code here:
-           if(jTextFieldMember.getText() == "") {
-                try {
-            
-                InputValue();
-                String query = "insert into mess_member (Member_Name) value ('"+ Member_Name +"')";
-                DBSta = DBCon.createStatement();
-                DBSta.execute(query);
-                DBSta.close();
+        try {
 
-                InputValueReset();
-                ShowTableData();
-            
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        } else {
-               JOptionPane.showMessageDialog(null, "Please enter Member Name");
-           }
-        
+            InputValue();
+            String query = "insert into mess_member (Member_Name) value ('" + Member_Name + "')";
+            DBSta = DBCon.createStatement();
+            DBSta.execute(query);
+            DBSta.close();
+
+            InputValueReset();
+            ShowTableData();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -242,65 +239,54 @@ public class frmMember extends javax.swing.JFrame {
     private void jTableShowMemberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableShowMemberMouseClicked
         // TODO add your handling code here:
         selectedRow = jTableShowMember.getSelectedRow();
-        
-        if(selectedRow >= 0)
-        {
+
+        if (selectedRow >= 0) {
             ID = Integer.parseInt(DataTable.getValueAt(selectedRow, 0).toString());
             jTextFieldMember.setText(DataTable.getValueAt(selectedRow, 1).toString());
-        }
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
     }//GEN-LAST:event_jTableShowMemberMouseClicked
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        if(ID >= 0)
-        {
+        if (ID >= 0) {
             try {
-                
+
                 InputValue();
-                String query = "update mess_member set Member_Name = '"+ Member_Name + "' where ID = '"+ ID +"'";
-                
+                String query = "update mess_member set Member_Name = '" + Member_Name + "' where ID = '" + ID + "'";
+
                 DBSta = (Statement) DBCon.createStatement();
                 DBSta.execute(query);
                 DBSta.close();
-                
+
                 ShowTableData();
                 InputValueReset();
-                
-            } catch (Exception ex)
-            {
+
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        if(ID >= 0)
-        {
+        if (ID >= 0) {
             try {
-                String query = "delete from mess_member where ID = '"+ ID +"'";
+                String query = "delete from mess_member where ID = '" + ID + "'";
                 DBSta = (Statement) DBCon.createStatement();
                 DBSta.execute(query);
                 DBSta.close();
-                
+
                 ShowTableData();
                 InputValueReset();
-                
-            }catch (Exception ex)
-            {
+
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "No row selected");
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
@@ -317,21 +303,20 @@ public class frmMember extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
-       TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
-       jTableShowMember.setRowSorter(trs);
-       String text = jTextFieldSearch.getText();
-       trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(DataTable);
+        jTableShowMember.setRowSorter(trs);
+        String text = jTextFieldSearch.getText();
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     /**
      * @param args the command line arguments
      */
-    
     private void DBConnection() {
         String url = "jdbc:mysql://localhost:3306/mess_management";
         String username = "root";
         String password = "";
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             DBCon = DriverManager.getConnection(url, username, password);
@@ -339,22 +324,22 @@ public class frmMember extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     private void InputValue() {
         Member_Name = jTextFieldMember.getText();
     }
-    
+
     private void InputValueReset() {
         jTextFieldMember.setText("");
     }
-    
+
     private void ShowTableData() {
         try {
             String query = "select ID, Member_name from mess_member";
             DBSta = DBCon.createStatement();
             ResultSet DatabaseRs = DBSta.executeQuery(query);
             DataTable.setRowCount(0);
-            
+
             while (DatabaseRs.next()) {
                 Object mess_member[] = {
                     DatabaseRs.getInt("ID"),
@@ -367,7 +352,7 @@ public class frmMember extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -404,10 +389,10 @@ public class frmMember extends javax.swing.JFrame {
     private String Member_Name;
     private Connection DBCon;
     private Statement DBSta;
-    private DefaultTableModel DataTable; 
+    private DefaultTableModel DataTable;
     private int selectedRow;
     private ResultSet RS;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonHome;
