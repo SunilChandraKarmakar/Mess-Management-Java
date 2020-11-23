@@ -125,6 +125,11 @@ public class frmMember extends javax.swing.JFrame {
 
         jTextFieldSearch.setBackground(new java.awt.Color(204, 255, 204));
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSearchActionPerformed(evt);
+            }
+        });
         jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldSearchKeyReleased(evt);
@@ -308,6 +313,10 @@ public class frmMember extends javax.swing.JFrame {
         String text = jTextFieldSearch.getText();
         trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
+
+    private void jTextFieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
     /**
      * @param args the command line arguments

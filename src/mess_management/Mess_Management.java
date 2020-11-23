@@ -5,6 +5,5 @@ public class Mess_Management {
         // TODO code application logic here
         frmHome home = new frmHome();
         home.setVisible(true);
-    }
-    
+    }  
 }

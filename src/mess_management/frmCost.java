@@ -8,6 +8,8 @@ package mess_management;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -342,9 +344,9 @@ public class frmCost extends javax.swing.JFrame {
         try {
             InputValue();
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date(0);
-            String currentDT = dateFormat.format(date);
+           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+           String currentDT = dtf.format(now); 
 
             for (Map.Entry cm : LoadMember.entrySet()) {
                 if (jComboBoxMemberName.getSelectedItem().equals(cm.getValue())) {
